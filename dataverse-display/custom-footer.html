@@ -1,0 +1,255 @@
+<!-- START of custom footer content -->
+<style>
+        /* NOTE: CSS has been moved to custom-stylesheet.css file */
+</style>
+<div id="custom-footer">
+    <div class="container">
+        <div class="row">
+            <!-- Start of row content -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="h1">Contact and Support</div>
+                <ul class="services">
+                    <li><a href="https://dans.knaw.nl/en/contact/" target="_blank">Contact</a></li>
+                    <li><a href="https://dans.knaw.nl/en/using-data-stations/" target="_blank">Using the Services</a></li>
+                    <li><a href="https://dans.knaw.nl/en/legal-information/" target="_blank">Legal Information</a></li>
+                    <li><a href="https://dans.knaw.nl/en/privacy-declaration/" target="_blank">Privacy</a></li>
+                    <li><a href="https://dans.knaw.nl/en/disclaimer/" target="_blank">Disclaimer</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="h1">About DANS</div>
+                <ul>
+                    <li><a href="https://dans.knaw.nl/en/about/" target="_blank">Mission</a></li>
+                    <li><a href="https://dans.knaw.nl/en/about/team/" target="_blank">Our Team</a></li>
+                    <li><a href="https://dans.knaw.nl/en/working-for-dans/"  target="_blank">Working for DANS</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="h1">Follow Us</div>
+                <ul>
+                    <li>
+                        <a href="https://dans.email-provider.eu/memberforms/subscribe/standalone/form/?a=vzl9su9xiv&amp;l=yy3ox9lfh8" target="_blank">
+                                <span class="footer_icons nieuwsbrief">
+                                    <img src="/logos/branding/letter.svg"/>
+                                    Newsletter DataLink
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/user/DANSDataArchiving" target="_blank">
+                                <span class="footer_icons">
+                                    <img src="/logos/branding/Youtube.svg"/> YouTube
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/dans_knaw_nwo" target="_blank">
+                                <span class="footer_icons">
+                                    <img src="/logos/branding/Twitter.svg"/> Twitter
+                                </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="headless-column">
+                    <p>DANS is an institute of <br/>
+                        <a href="https://www.knaw.nl/en" target="_blank"><strong>KNAW</strong></a>
+                        and
+                        <a href="https://www.nwo.nl/en" target="_blank"><strong>NWO</strong></a>
+                    </p>
+                </div>
+            </div>
+            <!-- End of row content -->
+        </div>
+    </div>
+</div>
+<!-- Additional custom HTML -->
+<!-- END of custom footer content -->
+
+<!-- Geomap -->
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+<!-- Clustering-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.1.0/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.1.0/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster@1.1.0/dist/leaflet.markercluster.js"></script>
+<style>
+.quality-label-percentage{
+    /* float like span */
+    display: inline-block;
+    
+    text-align: left;
+    vertical-align: text-top;
+    border: 0caps solid #755b73;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    background-color: rgb(241, 206, 223);
+}
+</style>
+<!-- when deployed on a DANS server the js file should be in '/var/www/html/custom' -->
+<!-- Note that in development we do not use a version number -->
+ <!--
+<script src="/custom/geomapview/dv-dataset-geomap-view.js"></script>
+-->
+<script>
+// checking the version
+let hasJQ = typeof jQuery === 'function'; 
+console.log('jQuery' + (hasJQ ? ` version ${jQuery.fn.jquery} loaded.` : ' is not loaded.')); 
+
+// Assume we have jQuery, because its is in the footer of the Dataverse application
+$().ready(function() {
+    console.log('Custom footer script loaded and ready.');
+
+    // get the current url
+    let url = window.location.href;
+    console.log('URL: ' + url);
+    // get the search part
+    let search = window.location.search;
+    console.log('Search: ' + search);
+    // get the query params
+    let params = new URLSearchParams(search);
+    console.log('Params: ' + params);
+
+    processDatasetPage();
+
+    processDatasetSearchResultsPage();
+
+    function processDatasetSearchResultsPage() {
+        console.log('Processing dataset search results page for quality labels.');
+        // check if we are on a dataset search results page
+
+        resultsTable = $('#searchResults').find('#resultsTable');
+        console.log('Results Table: ', resultsTable);
+        if (resultsTable.length === 0) {
+            console.log('No results table found on this page.');
+        } else {
+            console.log('Results table found on this page.');
+
+            // get all dataset entries on the page
+            // class datasetResult
+            resultsTable.find('.datasetResult').each(function() {
+                let datasetEntry = $(this);
+                // get  hrefs from the anchors in this entry
+                let anchors = datasetEntry.find('a');
+                anchors.each(function() {
+                    let anchor = $(this);
+                    let href = anchor.attr('href');
+                    console.log('Anchor href: ' + href);
+                    // check if href contains /dataset.xhtml
+                    if (href && href.includes('/dataset.xhtml')) {
+                        console.log('Dataset href found: ' + href);
+                        // get the persistentId from the href
+                        let urlObj = new URL(href, window.location.origin);
+                        let persistentId = urlObj.searchParams.get('persistentId');
+                        if (persistentId) {
+                            console.log('Persistent ID: ' + persistentId);
+                            // retrieve quality label percentage for this dataset
+                            let qualityPercentage = retrieveQualityLabel(persistentId);
+                            // only add it if it is above a threshold, for sake of testing; e.g., 50%
+                            if (qualityPercentage < 50) {
+                                console.log('Quality Percentage below threshold, not displaying.');
+                            } else {
+                                console.log('Quality Percentage above threshold, displaying.');
+                                // insert quality label into the dataset entry
+                                insertPercentageIntoSearchResultPage(qualityPercentage, datasetEntry);
+                            }                       
+                        }
+                        return false; // exit the anchors loop
+                    }
+                });
+            });
+        }
+    }
+
+    function insertPercentageIntoSearchResultPage(qualityPercentage, datasetEntry) {
+        console.log('Inserting Quality Percentage into search results page: ' + qualityPercentage + '%');
+        // For example, you could append it to each dataset entry
+        let qualityDiv = $('<div/>', {
+            class: 'quality-label-percentage',
+            text: 'Quality: ' + qualityPercentage + '%'
+        });
+
+        // Note that we could draw stars (svg) or other graphics here instead of text
+        // insert it
+        datasetEntry.prepend(qualityDiv);
+    }
+
+    function processDatasetPage() {
+        console.log('Processing dataset page for quality label.');
+        // check if we are on a dataset page
+        if (url.includes('/dataset.xhtml')) {
+            console.log('We are on a dataset page.');
+            // get the persistent identifier
+            let persistentId = params.get('persistentId');
+            if (persistentId) {
+                // decode the persistent identifier
+                console.log('Persistent ID: ' + persistentId);
+                handleQualityLabel(persistentId, insertPercentageIntoDatasetPage);
+            } else {
+                console.log('No persistent ID found in URL parameters.');
+            }
+        } else {
+            console.log('We are NOT on a dataset page.');
+        }
+    }
+
+    function handleQualityLabel(persistentId, inserterFunction) {
+        // Implement your logic to handle the quality label based on the persistent ID
+        console.log('Handling quality label for Persistent ID: ' + persistentId);
+        // retrieve quality label percentage for this dataset
+        let qualityPercentage = retrieveQualityLabel(persistentId);
+        
+        // only add it if it is above a threshold, for sake of testing; e.g., 50%
+        if (qualityPercentage < 50) {
+            console.log('Quality Percentage below threshold, not displaying.');
+        } else {
+            console.log('Quality Percentage above threshold, displaying.');
+            // insert quality label into the page
+            inserterFunction(qualityPercentage)//insertPercentageIntoPage(qualityPercentage);
+        }
+    }
+
+    function retrieveQualityLabel(persistentId) {
+        // Implement your logic to retrieve the quality label based on the persistent ID
+        console.log('Retrieving quality label for Persistent ID: ' + persistentId);
+        // fake it, just a quality percentage
+        let qualityPercentage = Math.floor(Math.random() * 101); // Random percentage between 0 and 100
+        console.log('Quality Percentage: ' + qualityPercentage + '%');
+        return qualityPercentage;
+
+        // $.ajax({
+        //     url: '/api/datasets/' + persistentId + '/quality-label',
+        //     method: 'GET',
+        //     success: function(data) {
+        //         console.log('Quality Label Data: ', data);
+        //         // You can add more logic here to display or process the quality label data
+        //     },
+        //     error: function(error) {
+        //         console.error('Error fetching quality label data: ', error);
+        //     }
+        // });
+    }
+
+    function insertPercentageIntoDatasetPage(qualityPercentage) {
+        console.log('Inserting Quality Percentage into page: ' + qualityPercentage + '%');
+        // For example, you could append it to a specific div
+        let qualityDiv = $('<div/>', {
+            class: 'quality-label-percentage',
+            text: 'Quality: ' + qualityPercentage + '%'
+        });
+
+        // Note that we could draw stars (svg) or other graphics here instead of text
+
+        // insert it
+        //$('#datasetCitationActionSummaryBlock').before(qualityDiv);
+        //$('#datasetVersionBlock').append(qualityDiv);
+        $('#title-label-block').append(qualityDiv);
+    }
+});
+</script>
