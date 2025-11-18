@@ -1,0 +1,422 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dqv: <http://www.w3.org/TR/vocab-dqv/#> .
+@prefix qnt: <http://quantumproject.eu/vocab-quantum/#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+
+</catalog/1> 
+    a dcat:Catalog ;
+    dct:title "DANS Data Station Life Sciences" ;
+    dct:hasVersion "1.0" ;
+    dct:isPartOf <> .
+
+
+</qualityCertificate/1> 
+    a dqv:QualityCertificate ;
+    oa:hasTarget </dataset/1> ;
+    dct:isPartOf </dataset/1> ;
+    oa:hasBody qnt:one_star ;
+    dct:title "Quality label"@en ;    
+    oa:motivatedBy dqv:qualityAssessment ;
+    dqv:inDimension 
+    qnt:Accessibility,
+    qnt:Population_Coverage,
+    qnt:Population_Representativity,
+    qnt:Compliance,
+    qnt:Data_Provenance,
+    qnt:Metadata_Scope,
+    qnt:Accuracy,
+    qnt:Coherence,
+    qnt:Completeness,
+    qnt:Consistency,
+    qnt:Precision,
+    qnt:Validity .  
+    
+qnt:CustomQuantumQuality
+    a skos:ConceptScheme ;
+    skos:prefLabel "Quantum Data Quality"@en ;
+    skos:definition "Rating System for Evaluating Dataset Data Quality within the QUANTUM Framework"@en 
+    .
+    
+qnt:zero_stars
+    a skos:Concept ;
+    skos:inScheme qnt:CustomQuantumQuality ;
+    skos:prefLabel "Zero star"@en ;
+    skos:definition "Zero star corresponds to a median data quality score in the range 0%-24%"@en 
+    .
+    
+qnt:one_star
+    a skos:Concept ;
+    skos:inScheme qnt:CustomQuantumQuality ;
+    skos:prefLabel "One star"@en ;
+    skos:definition "One star corresponds to a median data quality score in the range 25%-44%"@en 
+    .
+
+qnt:two_stars
+    a skos:Concept ;
+    skos:inScheme qnt:CustomQuantumQuality ;
+    skos:prefLabel "Two stars"@en ;
+    skos:definition "Two stars correspond to a median data quality score in the range 45%-59%"@en 
+    .
+
+qnt:three_stars
+    a skos:Concept ;
+    skos:inScheme qnt:CustomQuantumQuality ;
+    skos:prefLabel "Three stars"@en ;
+    skos:definition "Three stars correspond to a median data quality score in the range 60%-79%"@en 
+    .
+
+qnt:four_stars
+    a skos:Concept ;
+    skos:inScheme qnt:CustomQuantumQuality ;
+    skos:prefLabel "Four stars"@en ;
+    skos:definition "Four stars correspond to a median data quality score in the range 80%-89%"@en 
+    .
+
+qnt:five_stars
+    a skos:Concept ;
+    skos:inScheme qnt:CustomQuantumQuality ;
+    skos:prefLabel "Five stars"@en ;
+    skos:definition "Five stars correspond to a median data quality score in the range 90%-100%"@en 
+    .
+    
+</dataset/1>
+    a dcat:Dataset ;
+    dcterms:title "Morphological diversity in the foraminiferal genus Marginopora" ;
+    dct:hasVersion "1.0" ;
+    dct:description "Benthic foraminifera, and certainly symbiont-bearing (large) benthic foraminifera are generally considered to have large geographic ranges in combination with significant ecomorphological variation. With the advance of molecular phylogenetic approaches, supported or preceded by detailed morphological studies, it was demonstrated that this view needs to be reevaluated. Following a publication interpreting the morphological and molecular diversity of Marginopora from the Great Barrier Reef as a single species, I here describe the morphology of five Marginopora populations from around the Coral Sea. I argue that ecomorphological and ontogenetic variation is smaller than geographic variation in morphology. This forms the basis for the description of three new species, M. charlottensis, M. orpheusensis, and M. santoensis. I argue that the diversity of this genus is underestimated, and that there are at least five species in the Coral Sea area alone.
+This dataset contains the CT-scans of the five species and eight populations of Marginopora included in this study.
+
+**The extracted data files are a representative collection of CT-scans available for direct download. The rest of the CT-scans can be found in the larger ZIP files in the root of the dataset.**" ;
+    dct:isPartOf <http:///catalog/1> ;
+    dqv:hasQualityAnnotation </qualityCertificate/1> ;
+    dqv:hasQualityMeasurement
+    qnt:Accessibility_measurement1,
+    qnt:Accessibility_measurement2,
+    qnt:Population_Coverage_measurement1,
+    qnt:Population_Representativity_measurement1,
+    qnt:Compliance_measurement1,
+    qnt:Data_Provenance_measurement1,
+    qnt:Data_Provenance_measurement2,
+    qnt:Metadata_Scope_measurement1,
+    qnt:Metadata_Scope_measurement2,
+    qnt:Accuracy_measurement1,
+    qnt:Coherence_measurement1,
+    qnt:Completeness_measurement1,
+    qnt:Consistency_measurement1,
+    qnt:Precision_measurement1,
+    qnt:Validity_measurement1 .
+    
+
+qnt:Accessibility_measurement1 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn </dataset/1> ;
+    dqv:isMeasurementOf qnt:Accessibility_metric1 ;
+    dqv:value "2"^^xsd:integer ;
+    .
+
+
+qnt:Accessibility_metric1
+    a dqv:Metric ;
+    skos:definition "Availability of a data access & usage policy at the time of release of the dataset"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Accessibility ;
+    .
+
+
+qnt:Accessibility_measurement2 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn </dataset/1> ;
+    dqv:isMeasurementOf qnt:Accessibility_metric2 ;
+    dqv:value "3"^^xsd:integer ;
+    .
+
+
+qnt:Accessibility_metric2
+    a dqv:Metric ;
+    skos:definition "Average time from data access application to data release for a specific dataset"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Accessibility ;
+    .
+
+
+qnt:Accessibility
+    a dqv:Dimension ;
+    skos:prefLabel "Accessibility"@en ;
+    skos:definition "Accessibility refers to the dataset being accompanied by clear and transparent access and usage conditions."@en ;
+    dqv:inCategory qnt:Access_And_Provision ;
+    .
+
+
+qnt:Access_And_Provision
+    a dqv:Category ;
+    skos:prefLabel "Access and provision"@en ;
+    skos:definition "category_definition";
+    .
+
+
+qnt:Population_Coverage_metric1
+    a dqv:Metric ;
+    skos:definition "Coverage Rate (percentage of the eligible population represented in the dataset)"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Population_Coverage ;
+    .
+
+
+qnt:Population_Coverage
+    a dqv:Dimension ;
+    skos:prefLabel "Population coverage"@en ;
+    skos:definition "Population coverage refers to the degree to which a dataset includes the potential eligible population."@en ;
+    dqv:inCategory qnt:Coverage ;
+    .
+
+
+qnt:Population_Representativity_metric1
+    a dqv:Metric ;
+    skos:definition "How closely does the observed population represent the expected population?"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Population_Representativity ;
+    .
+
+
+qnt:Population_Representativity
+    a dqv:Dimension ;
+    skos:prefLabel "Population representativity"@en ;
+    skos:definition "Population representativity refers to the degree to which the data adequately represent the population in question."@en ;
+    dqv:inCategory qnt:Coverage ;
+    .
+
+
+qnt:Coverage
+    a dqv:Category ;
+    skos:prefLabel "Coverage"@en ;
+    skos:definition "category_definition";
+    .
+
+
+qnt:Compliance_measurement1 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn </dataset/1> ;
+    dqv:isMeasurementOf qnt:Compliance_metric1 ;
+    dqv:value "1"^^xsd:integer ;
+    .
+
+
+qnt:Compliance_metric1
+    a dqv:Metric ;
+    skos:definition "Is there documentation of compliance with ethical standards, conventions, protocols or regulations?"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Compliance ;
+    .
+
+
+qnt:Compliance
+    a dqv:Dimension ;
+    skos:prefLabel "Compliance"@en ;
+    skos:definition "Compliance refers to the degree to which data has attributes that adhere to ethical standards, conventions, protocols or regulations."@en ;
+    dqv:inCategory qnt:Data_Documentation ;
+    .
+
+
+qnt:Data_Provenance_measurement1 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn </dataset/1> ;
+    dqv:isMeasurementOf qnt:Data_Provenance_metric1 ;
+    dqv:value "1"^^xsd:integer ;
+    .
+
+
+qnt:Data_Provenance_metric1
+    a dqv:Metric ;
+    skos:definition "Is the source of the dataset documented?"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Data_Provenance ;
+    .
+
+
+qnt:Data_Provenance_measurement2 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn </dataset/1> ;
+    dqv:isMeasurementOf qnt:Data_Provenance_metric2 ;
+    dqv:value "1"^^xsd:integer ;
+    .
+
+
+qnt:Data_Provenance_metric2
+    a dqv:Metric ;
+    skos:definition "Are the processes and operations on the data documented?"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Data_Provenance ;
+    .
+
+
+qnt:Data_Provenance
+    a dqv:Dimension ;
+    skos:prefLabel "Data provenance"@en ;
+    skos:definition "Data provenance means a description of the source of the data, including context, purpose, method and technology of data generation, documenting agents involved in the provenance of data, data validation routines, source data verification, traceability of changes, and quality control of data."@en ;
+    dqv:inCategory qnt:Data_Documentation ;
+    .
+
+
+qnt:Metadata_Scope_measurement1 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn </dataset/1> ;
+    dqv:isMeasurementOf qnt:Metadata_Scope_metric1 ;
+    dqv:value "1"^^xsd:integer ;
+    .
+
+
+qnt:Metadata_Scope_metric1
+    a dqv:Metric ;
+    skos:definition "Existence of comprehensive standardised metadata"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Metadata_Scope ;
+    .
+
+
+qnt:Metadata_Scope_measurement2 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn </dataset/1> ;
+    dqv:isMeasurementOf qnt:Metadata_Scope_metric2 ;
+    dqv:value "1"^^xsd:integer ;
+    .
+
+
+qnt:Metadata_Scope_metric2
+    a dqv:Metric ;
+    skos:definition "Existence of an exhaustive data dictionary at variable level"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Metadata_Scope ;
+    .
+
+
+qnt:Metadata_Scope
+    a dqv:Dimension ;
+    skos:prefLabel "Metadata scope"@en ;
+    skos:definition "Metadata scope refers to the availability, comprehensiveness, level of detail of metadata and data dictionary that help users understand the data being used."@en ;
+    dqv:inCategory qnt:Data_Documentation ;
+    .
+
+
+qnt:Data_Documentation
+    a dqv:Category ;
+    skos:prefLabel "Data documentation"@en ;
+    skos:definition "category_definition";
+    .
+
+
+qnt:Accuracy_measurement1 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn </dataset/1> ;
+    dqv:isMeasurementOf qnt:Accuracy_metric1 ;
+    dqv:value "1"^^xsd:integer ;
+    .
+
+
+qnt:Accuracy_metric1
+    a dqv:Metric ;
+    skos:definition "Is accuracy of the dataset documented?"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Accuracy ;
+    .
+
+
+qnt:Accuracy
+    a dqv:Dimension ;
+    skos:prefLabel "Accuracy"@en ;
+    skos:definition "Accuracy refers to the degree to which observations correctly describe what it was designed to measure."@en ;
+    dqv:inCategory qnt:Technical_Quality ;
+    .
+
+
+qnt:Coherence_metric1
+    a dqv:Metric ;
+    skos:definition "Is coherence of the dataset documented?"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Coherence ;
+    .
+
+
+qnt:Coherence
+    a dqv:Dimension ;
+    skos:prefLabel "Coherence"@en ;
+    skos:definition "Coherence is defined as the dimension that expresses how different parts of the dataset are uniform in their representation and meaning over time, such as formats, semantics (stability of the data models), and methods."@en ;
+    dqv:inCategory qnt:Technical_Quality ;
+    .
+
+
+qnt:Completeness_metric1
+    a dqv:Metric ;
+    skos:definition "Is completeness of the dataset documented?"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Completeness ;
+    .
+
+
+qnt:Completeness
+    a dqv:Dimension ;
+    skos:prefLabel "Completeness"@en ;
+    skos:definition "Completeness refers to the degree to which all information that could be available is present in a particular dataset organized as tabular data."@en ;
+    dqv:inCategory qnt:Technical_Quality ;
+    .
+
+
+qnt:Consistency_metric1
+    a dqv:Metric ;
+    skos:definition "Is consistency of the dataset documented?"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Consistency ;
+    .
+
+
+qnt:Consistency
+    a dqv:Dimension ;
+    skos:prefLabel "Consistency"@en ;
+    skos:definition "Consistency refers to the degree to which data has attributes that are plausible and are uniform with other data and over time."@en ;
+    dqv:inCategory qnt:Technical_Quality ;
+    .
+
+
+qnt:Precision_metric1
+    a dqv:Metric ;
+    skos:definition "Is precision of the dataset documented?"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Precision ;
+    .
+
+
+qnt:Precision
+    a dqv:Dimension ;
+    skos:prefLabel "Precision"@en ;
+    skos:definition "Precision refers to the degree of approximation by which data can represent reality."@en ;
+    dqv:inCategory qnt:Technical_Quality ;
+    .
+
+
+qnt:Validity_metric1
+    a dqv:Metric ;
+    skos:definition "Availability of a conformance report for the data model"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension qnt:Validity ;
+    .
+
+
+qnt:Validity
+    a dqv:Dimension ;
+    skos:prefLabel "Validity"@en ;
+    skos:definition "Validity refers to the degree to which representations of data in a dataset conform to the specification of a data model or data models."@en ;
+    dqv:inCategory qnt:Technical_Quality ;
+    .
+
+
+qnt:Technical_Quality
+    a dqv:Category ;
+    skos:prefLabel "Technical quality"@en ;
+    skos:definition "category_definition";
+    .
+
