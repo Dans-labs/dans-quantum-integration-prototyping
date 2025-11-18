@@ -1,0 +1,12 @@
+prefix dcat: <http://www.w3.org/ns/dcat#>
+prefix dct: <http://purl.org/dc/terms/>
+prefix qnt: <http://quantumproject.eu/vocab-quantum#>
+prefix qnte: <http://quantumproject.eu/entities-quantum#>
+
+
+SELECT ?desc 
+WHERE  {
+ ?s a  dcat:Dataset ;
+    dct:description ?desc.
+}
+

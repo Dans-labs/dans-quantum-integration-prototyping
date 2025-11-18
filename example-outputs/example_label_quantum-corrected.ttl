@@ -1,7 +1,7 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix dqv: <http://www.w3.org/TR/vocab-dqv/#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
 @prefix qnt: <http://quantumproject.eu/vocab-quantum#> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -89,7 +89,10 @@ qnte:dataset
     a dcat:Dataset ;
     dcterms:title "Morphological diversity in the foraminiferal genus Marginopora" ;
     dct:hasVersion "1.0" ;
-    dct:description "Benthic foraminifera" ;
+    dct:description """"Benthic foraminifera, and certainly symbiont-bearing (large) benthic foraminifera are generally considered to have large geographic ranges in combination with significant ecomorphological variation. With the advance of molecular phylogenetic approaches, supported or preceded by detailed morphological studies, it was demonstrated that this view needs to be reevaluated. Following a publication interpreting the morphological and molecular diversity of Marginopora from the Great Barrier Reef as a single species, I here describe the morphology of five Marginopora populations from around the Coral Sea. I argue that ecomorphological and ontogenetic variation is smaller than geographic variation in morphology. This forms the basis for the description of three new species, M. charlottensis, M. orpheusensis, and M. santoensis. I argue that the diversity of this genus is underestimated, and that there are at least five species in the Coral Sea area alone.
+This dataset contains the CT-scans of the five species and eight populations of Marginopora included in this study.
+
+**The extracted data files are a representative collection of CT-scans available for direct download. The rest of the CT-scans can be found in the larger ZIP files in the root of the dataset.**" ;""" ;
     dct:isPartOf qnte:catalog ;
     dqv:hasQualityAnnotation qnte:qualityCertificate ;
     dqv:hasQualityMeasurement
