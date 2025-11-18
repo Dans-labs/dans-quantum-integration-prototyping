@@ -2,24 +2,24 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dqv: <http://www.w3.org/TR/vocab-dqv/#> .
-@prefix qnt: <http://quantumproject.eu/vocab-quantum/#> .
+@prefix qnt: <http://quantumproject.eu/vocab-quantum#> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix qnte: <http://quantumproject.eu/entities-quantum#> .
 
-
-</catalog/1> 
+qnte:catalog 
     a dcat:Catalog ;
     dct:title "DANS Data Station Life Sciences" ;
     dct:hasVersion "1.0" ;
     dct:isPartOf <> .
 
 
-</qualityCertificate/1> 
+qnte:qualityCertificate 
     a dqv:QualityCertificate ;
-    oa:hasTarget </dataset/1> ;
-    dct:isPartOf </dataset/1> ;
+    oa:hasTarget qnte:dataset ;
+    dct:isPartOf qnte:dataset ;
     oa:hasBody qnt:one_star ;
     dct:title "Quality label"@en ;    
     oa:motivatedBy dqv:qualityAssessment ;
@@ -85,13 +85,13 @@ qnt:five_stars
     skos:definition "Five stars correspond to a median data quality score in the range 90%-100%"@en 
     .
     
-</dataset/1>
+qnte:dataset
     a dcat:Dataset ;
     dcterms:title "Morphological diversity in the foraminiferal genus Marginopora" ;
     dct:hasVersion "1.0" ;
     dct:description "Benthic foraminifera" ;
-    dct:isPartOf <http:///catalog/1> ;
-    dqv:hasQualityAnnotation </qualityCertificate/1> ;
+    dct:isPartOf qnte:catalog ;
+    dqv:hasQualityAnnotation qnte:qualityCertificate ;
     dqv:hasQualityMeasurement
     qnt:Accessibility_measurement1,
     qnt:Accessibility_measurement2,
@@ -112,7 +112,7 @@ qnt:five_stars
 
 qnt:Accessibility_measurement1 
     a dqv:QualityMeasurement ;
-    dqv:computedOn </dataset/1> ;
+    dqv:computedOn qnte:dataset ;
     dqv:isMeasurementOf qnt:Accessibility_metric1 ;
     dqv:value "2"^^xsd:integer ;
     .
@@ -128,7 +128,7 @@ qnt:Accessibility_metric1
 
 qnt:Accessibility_measurement2 
     a dqv:QualityMeasurement ;
-    dqv:computedOn </dataset/1> ;
+    dqv:computedOn qnte:dataset ;
     dqv:isMeasurementOf qnt:Accessibility_metric2 ;
     dqv:value "3"^^xsd:integer ;
     .
@@ -198,7 +198,7 @@ qnt:Coverage
 
 qnt:Compliance_measurement1 
     a dqv:QualityMeasurement ;
-    dqv:computedOn </dataset/1> ;
+    dqv:computedOn qnte:dataset ;
     dqv:isMeasurementOf qnt:Compliance_metric1 ;
     dqv:value "1"^^xsd:integer ;
     .
@@ -222,7 +222,7 @@ qnt:Compliance
 
 qnt:Data_Provenance_measurement1 
     a dqv:QualityMeasurement ;
-    dqv:computedOn </dataset/1> ;
+    dqv:computedOn qnte:dataset ;
     dqv:isMeasurementOf qnt:Data_Provenance_metric1 ;
     dqv:value "1"^^xsd:integer ;
     .
@@ -238,7 +238,7 @@ qnt:Data_Provenance_metric1
 
 qnt:Data_Provenance_measurement2 
     a dqv:QualityMeasurement ;
-    dqv:computedOn </dataset/1> ;
+    dqv:computedOn qnte:dataset ;
     dqv:isMeasurementOf qnt:Data_Provenance_metric2 ;
     dqv:value "1"^^xsd:integer ;
     .
@@ -262,7 +262,7 @@ qnt:Data_Provenance
 
 qnt:Metadata_Scope_measurement1 
     a dqv:QualityMeasurement ;
-    dqv:computedOn </dataset/1> ;
+    dqv:computedOn qnte:dataset ;
     dqv:isMeasurementOf qnt:Metadata_Scope_metric1 ;
     dqv:value "1"^^xsd:integer ;
     .
@@ -278,7 +278,7 @@ qnt:Metadata_Scope_metric1
 
 qnt:Metadata_Scope_measurement2 
     a dqv:QualityMeasurement ;
-    dqv:computedOn </dataset/1> ;
+    dqv:computedOn qnte:dataset ;
     dqv:isMeasurementOf qnt:Metadata_Scope_metric2 ;
     dqv:value "1"^^xsd:integer ;
     .
@@ -309,7 +309,7 @@ qnt:Data_Documentation
 
 qnt:Accuracy_measurement1 
     a dqv:QualityMeasurement ;
-    dqv:computedOn </dataset/1> ;
+    dqv:computedOn qnte:dataset ;
     dqv:isMeasurementOf qnt:Accuracy_metric1 ;
     dqv:value "1"^^xsd:integer ;
     .
